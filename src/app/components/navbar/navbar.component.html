@@ -1,0 +1,13 @@
+<nav class="navbar">
+    <button 
+    mat-button
+    class="nav-element"
+    *ngFor="let element of navElements"
+    [routerLink]="element.route"
+    [routerLinkActive]="'active'" 
+    [routerLinkActiveOptions]="{ exact: true }"
+    >
+        <mat-icon *ngIf="element.icon">{{element.icon}}</mat-icon>
+        {{element.displayName}}
+    </button>
+</nav>
