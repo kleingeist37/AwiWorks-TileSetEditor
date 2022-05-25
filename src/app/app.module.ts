@@ -9,6 +9,7 @@ import { HomeComponent } from './components/home/home.component';
 import { MainEditorComponent } from './components/main-editor/main-editor.component';
 import { MaterialModule } from './modules/material/material.module';
 import { LoadComponent } from './components/load/load.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -24,6 +25,8 @@ import { LoadComponent } from './components/load/load.component';
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
+    FormsModule,
+    ReactiveFormsModule,
 
     MaterialModule
   ],

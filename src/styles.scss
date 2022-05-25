@@ -1,4 +1,30 @@
 /* You can add global styles to this file, and also import other style files */
 
-html, body { height: 100%; }
+html, body { height: 100vh; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+.gl-content-container {
+    display: flex;
+    overflow-y: scroll;
+}
+
+.gl-full-height {
+    height: 100%;
+}
+
+.gl-fx-gr-0 {
+    flex-grow: 0;
+}
+.gl-fx-gr-1 {
+    flex-grow: 1;
+}
+.gl-fx-gr-2 {
+    flex-grow: 2;
+}
+.gl-fx-gr-3 {
+    flex-grow: 3;
+}
+
+.gl-box-shadow {
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
