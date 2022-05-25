@@ -3,11 +3,19 @@
     justify-content: center;
     align-items: center;
     align-content: center;
+
+}
+
+.editor-content {
+    max-width: 70vw;
+    max-height: 70vh;
+    overflow: scroll;
 }
 
 .form-area {
     padding: 10px;
     max-width: 30%;
+    overflow: hidden;
 }
 
 .form-field {
@@ -18,7 +26,6 @@
 .bottom-bar {    
     bottom: 0;  
     display: flex;
-
     margin: 10px;
     position: absolute;
 }
@@ -33,5 +40,11 @@
 
 .text-field {
     max-height: 10%;
+}
+
+.thumbnail {
+    border: 1px solid grey;
+    max-width: 80px;
+    max-height: 80px;
 }
 

@@ -1,10 +1,15 @@
 <div class="gl-content-container gl-full-height">
-    <div class="editor-area gl-fx-gr-3">    
-        <img 
+    <div class="editor-area gl-fx-gr-3">   
+        <div class="editor-content">
+            <img  class="editor-image"
             #preview [src]="selectedImage" (click)="getDimension()">
+        </div> 
     </div>
     
-    <form class="form-area gl-fx-gr-1 gl-box-shadow">
+    <form 
+    [formGroup]="tilesetForm"
+    (ngSubmit)="onSubmit()"
+    class="form-area gl-fx-gr-1 gl-box-shadow">
         <h1 class="text-center">TileSet Data</h1>
         <mat-divider></mat-divider>
         <mat-tab-group mat-align-tabs="center" class="tab" dynamicHeight>
@@ -14,37 +19,57 @@
             <section>
                 <mat-form-field appearance="fill" class="form-field " >
                     <mat-label>DisplayName</mat-label>
-                    <input matInput placeholder="My TileSet" value="">
+                    <input matInput placeholder="My TileSet" value=""
+                    formControlName="displayname">
                 </mat-form-field>
             </section> 
             <section>
                 <mat-form-field appearance="fill" class="form-field ">
                     <mat-label>Description</mat-label>
                     <textarea cdkTextareaAutosize
-                    #autosize="cdkTextareaAutosize" matInput placeholder="The best Description ever" value=""></textarea>
+                    #autosize="cdkTextareaAutosize" matInput placeholder="The best Description ever" value=""
+                    formControlName="description"></textarea>
                 </mat-form-field> 
             </section> 
 
-            <section>     
-                <!-- (change)="onUpload(imageInput)" -->
-                <ngx-mat-file-input [formControl]="fileControl" #imageInput [multiple]="false" [accept]="'image/png'" [color]="'primary'" appeareance="fill" > 
-                </ngx-mat-file-input>
+            <section>    
+                <mat-divider class="gl-obj-space"></mat-divider> 
+                <h3 class="text-center gl-obj-space">TileSet File</h3>
+                <div>
+                    <img  
+                    *ngIf="selectedImage !== undefined"               
+                    #thumbnail 
+                    [src]="selectedImage" 
+                    class="thumbnail">
+    
+                    <!-- (change)="onUpload(imageInput)" -->
+                    <mat-form-field appearance="outline">
+                        <ngx-mat-file-input 
+                            class="gl-obj-space" 
+                            formControlName="tilesetFile" 
+                            #imageInput [accept]="'image/png'" [color]="'primary'"> 
+                            Please upload a valid png
+                        </ngx-mat-file-input>
+                    </mat-form-field>
+                </div>
+               
+             
                 <!-- <input                 
 
                 type="file" 
                 accept="image/png"
                 name="upload"
                 class="file-upload" (change)="onUpload(imageInput)">           -->
-              
+                <mat-divider class="gl-obj-space"></mat-divider>
             </section>
             <section>
-                <mat-checkbox [(ngModel)]="isAutoTileSet" [color]="'primary'" name="isAutoTileSet">This is an AutoTileSet</mat-checkbox>
+                <mat-checkbox  formControlName="isAutoTileSet" [color]="'primary'" name="isAutoTileSet">This is an AutoTileSet</mat-checkbox>
             </section>
             </mat-tab>
             <mat-tab 
             label="Game Properties"
             > 
-                Content 2 
+            Content 2 
             </mat-tab>
             <mat-tab 
             label="AutoTile Settings"
@@ -55,19 +80,17 @@
           </mat-tab-group>
           <section class="bottom-bar">
             <button 
-                mat-raised-button 
-                color="primary" 
-                type="submit"
-                >
-                Save
+            mat-raised-button 
+            color="primary" 
+            type="submit"
+            >
+            Save
             </button>
             <button 
-                mat-raised-button 
-                color="" 
-                type="button"
-                class=""
-                >
-                Clear
+            mat-raised-button 
+            type="button"
+            >
+            Clear
             </button>
           </section>
 

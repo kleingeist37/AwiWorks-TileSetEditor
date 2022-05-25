@@ -1,5 +1,5 @@
 import { Component, ElementRef, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
-import { FormControl } from '@angular/forms';
+import { FormControl, FormGroup } from '@angular/forms';
 import { Observable } from 'rxjs';
 import { NavElement } from 'src/app/shared/classes/navelement.class';
 
@@ -15,8 +15,14 @@ import { NavElement } from 'src/app/shared/classes/navelement.class';
 export class MainEditorComponent implements OnInit {
   @ViewChild('preview', { static: false }) image : ElementRef; 
 
+  tilesetForm : FormGroup = new FormGroup({
+    // fileControl : new FormControl(''),
+    displayname : new FormControl(''),
+    description : new FormControl(''),
+    isAutoTileSet: new FormControl(''),
+  });
   isAutoTileSet = false;
-  fileControl: FormControl;
+
 
   selectedImage: string | ArrayBuffer;
   tileSetWidth: number;
@@ -24,19 +30,25 @@ export class MainEditorComponent implements OnInit {
 
   public tileSetFile;
   constructor() {
-    this.fileControl = new FormControl(this.tileSetFile, [
+
+    this.tilesetForm.addControl('tilesetFile', new FormControl(this.tileSetFile))
+    // this.tilesetForm.controls.fileControl = new FormControl(this.tileSetFile, [
      
-    ]);
+    // ]);
 
    }
 
 
 
   ngOnInit(): void {
-    this.fileControl.valueChanges.subscribe((files: any) => {
+    this.tilesetForm.controls.tilesetFile.valueChanges.subscribe((files: any) => {
       this.tileSetFile = !Array.isArray(files) ? [files] : files;        
       this.onUpload();
     });
+
+    this.tilesetForm.controls.isAutoTileSet.valueChanges.subscribe((value: boolean) => {
+      this.isAutoTileSet = value;
+    })
   }
 
   onUpload(){
@@ -56,7 +68,9 @@ export class MainEditorComponent implements OnInit {
      );
 		}
   }
-
+  onSubmit(){
+    console.log(this.tilesetForm);
+  }
   // onUpload(imageInput: any){
 
   //   console.log(imageInput);
